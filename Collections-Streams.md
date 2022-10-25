@@ -5,7 +5,7 @@ Interview Questions
 List<Integer> list = Arrays.asList(1,2,3,4,5); 
 list.stream().mapToInt(i -> i* i).filter(square -> square > 10).average();
 ```
-2. Sort a list
+2. Sort a list of numbers
 ```
 list.stream().sorted()
 ```
@@ -31,4 +31,22 @@ Set<Integer> set - new HashSet<>();
 list.stream().filter(i -> !set.add(i)).forEach();
 
 set.add() returns false if element is already present
+```
+8. Calculate frequency of each word in a given String or caluclate how many times a number is appearing in a list
+```
+Map<String,Long> map = list.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
+
+```
+9. Sort list of Employess based on Salary
+```
+empList.stream().sorted((a,b) -> ( b.getSalary() - a.getSalary())).collect(Collectors.toList());
+```
+10. Third largest emp salary from list of Employees
+```
+empList.stream().sorted((a,b) -> ( b.getSalary() - a.getSalary())).skip(3).findFirst();
+
+To get name
+
+empList.stream().sorted((a,b) -> ( b.getSalary() - a.getSalary())).skip(3).map(Employee :: getName).findFirst();
 ```
